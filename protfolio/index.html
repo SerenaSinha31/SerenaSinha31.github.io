@@ -1,69 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Responsive Navigation</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
   <style>
-   
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
+      margin: 0;
       font-family: Arial, sans-serif;
     }
 
-    header {
-      background-color: blue;
-      border-bottom: 1px solid #ccc;
-    }
-
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .navbar {
+      background-color: darkblue;
+      overflow: hidden;
       padding: 10px 20px;
     }
 
-    nav div {
+    .navbar .logo {
+      float: left;
+      font-size: 20px;
       font-weight: bold;
-      font-size: 1.5em;
+      color: white;
     }
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
+    .navbar .nav-links {
+      float: right;
     }
 
-    nav ul li a {
+    .navbar .nav-links a {
       text-decoration: none;
       color: white;
-      transition: color 0.3s ease;
+      margin-left: 15px;
+      font-size: 16px;
     }
 
-   
-  .box{
-    color: white;
- }
-    
+    .navbar .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .box {
+      display: inline-block;
+      width: 45%;
+      background-color: #f0f0f0;
+      padding: 20px;
+      margin: 10px;
+      vertical-align: top;
+      border-radius: 8px;
+    }
+
+    .box h2 {
+      margin-top: 0;
+    }
+
+    .btn {
+      background-color: darkblue;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: navy;
+    }
   </style>
 </head>
 <body>
-
   <header>
-    <nav>
-      <div class="box">Serena</div>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+    <div class="navbar">
+      <div class="logo">Parvati</div>
+      <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
   </header>
 
+  <!-- Side-by-side boxes -->
+  <div class="container">
+    <div class="box">
+      <h2>MERN Stack Developer</h2>
+      <p>I specialize in building full-stack web applications using MongoDB, Express.js, React, and Node.js.</p>
+      <button class="btn">View My Projects</button>
+    </div>
+
+    <div class="box">
+      <h2>Additional Info</h2>
+      <p>You can add more information here like experience, skills, or contact details.</p>
+    </div>
+  </div>
 </body>
 </html>
