@@ -13,18 +13,28 @@
         
     </audio>
     <h3>Video Files</h3>
-    <video height="200" width="300" controls autoplay muted>
+    <video height="200" width="300" controls>
         <source src="st1.mp4" />
         <track src="subtitles1.vtt" 
                kind="subtitles" 
                label="English" 
-               srclang="en" default />
+               srclang="en"/>
         
     </video>
-    <video height="200" width="300" controls autoplay muted>
+    <video height="200" width="300" autoplay muted>
         <source src="st1.mp4" />
       
     </video>
+     <video height="200" width="300" controls>
+        <source src="st1.mp4" />
+        <track 
+        src="subtitles1.vtt" 
+               kind="subtitles" 
+               label="Hindi" 
+               srclang="in"/>
+        
+    </video>
+    <h2>Shapes</h2>
     <svg width="500" height="500">
         <circle
             cx="250"
@@ -35,15 +45,14 @@
             fill="yellow"
         />
         <ellipse
-            cx="250"
-            cy="200"
+            cx="100"
+            cy="70"
             rx="100"
             ry="50"
-            stroke="blue"
-            stroke-width="4"
+           
             fill="green"
             />
-           <text></text>
+           <text fill="black" font-size="45" font-family="Verdana" x="50" y="86">Zee Cinema</text>
     </svg>
 </body>
 </html>
