@@ -1,13 +1,85 @@
-.row {
-    display:flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+/* Container styling */
+.container {
+  width: 900px;
+  margin: auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
+  padding: 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
 }
 
-.row div{
-    margin: 10px;
-    width: 300px;
-    padding: 10px;
-    border: 1px solid gray;
-    border-radius: 10px;
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+
+.header h1 {
+  color: #333;
+}
+
+.header ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 10px;
+}
+
+.header li {
+  display: inline-block;
+  margin: 5px;
+  padding: 8px 14px;
+  cursor: pointer;
+  background-color: #3498db;
+  color: white;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.header li:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
+}
+
+/* Row styling */
+.row {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* Card styling inside row */
+.row div {
+  background-color: #ffffff;
+  margin: 10px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  width: 200px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.row div:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Footer */
+h4 {
+  text-align: center;
+  margin-top: 30px;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+/* Responsive tweaks */
+@media (max-width: 950px) {
+  .container {
+    width: 95%;
+  }
+}
+
