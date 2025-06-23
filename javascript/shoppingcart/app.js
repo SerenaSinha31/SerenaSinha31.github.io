@@ -5,68 +5,41 @@ const products = [
   { id: 2, name: "Product 2", price: 50 },
   { id: 3, name: "Product 3", price: 75 },
 ];
-// const showProducts = () => {
-//   let str = "";
-//   products.map((value) => {
-//     str += `<li>${value.id}-${value.name}-$${value.price}</li>`;
-//   });
-//   let r = document.getElementById("root");
-//   r.innerHTMNL = str;
-// };
 const showProducts = () => {
+  let str = "<div class='row'>";
+  products.map((value) => {
+    str += `<div>
+    <h3>${value.name}</h3>
+    <h4>$${value.price}</h4>
+    <button onclick='addToCart(${value.id})'>Add to Cart</button>
+    </div>`;
+  });
+  str += "</div>";
   let r = document.getElementById("root");
-  r.innerHTML = "Hello World"
+  r.innerHTML = str;
 };
+
 function addToCart(id) {
   cart = { ...cart, [id]: 1 };
 }
 function increment(id) {
   cart = { ...cart, [id]: cart[id] + 1 };
+  showCart();
 }
 function decrement(id) {
   cart = { ...cart, [id]: cart[id] - 1 };
+   showCart();
 }
-console.log("List of Products");
-console.log(products);
-console.log(`Added Product 1 to cart`);
-addToCart(1);
-addToCart(2);
+function showCart() {
+  let str = "";
+  products.map((value) => {
+    cart[value.id] > 0 && (str += `<li>${value.name}-$${value.price}-<button onclick="decrement(${value.id})">-</button>${cart[value.id]}<button onclick="increment(${value.id})">+</button>-$${value.price*cart[value.id]}</li>`);
+  });
+  let r = document.getElementById("root");
+  r.innerHTML = str;
+}
 
-console.log(cart);
-console.log(`Added Product 3 to cart`);
-addToCart(3);
-console.log(cart);
-console.log(`Incremented one quantify of Product 1 to cart`);
-increment(1);
-console.log(cart);
-console.log(`Incremented one more quantify of Product 1 to cart`);
-increment(1);
-console.log(cart);
-console.log(`Decremented one quantify of Product 1 from cart`);
-decrement(1);
-console.log(cart);
-increment(3);
-increment(3);
-console.log(cart);
-increment(2);
-increment(2);
-increment(2);
-increment(2);
-increment(2);
-console.log(cart);
-
-console.log("Display Cart with Product Details");
-products.map((value) => {
-  cart[value.id] &&
-    console.log(
-      `${value.name}-$${value.price}-${cart[value.id]}-$${
-        value.price * cart[value.id]
-      }`
-    );
-});
 const total = products.reduce((sum, value) => {
   return sum + value.price * (cart[value.id] ?? 0);
 }, 0);
 console.log(`Order Value:${total}`);
-
-showProducts();
