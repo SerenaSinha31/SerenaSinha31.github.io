@@ -264,7 +264,4 @@ db.studentInfo.aggregate([
     {$lookup:{from:"marks",localField:"_id",foreignField:"sid",as:"marks"}},
     {$unwind:"$marks"},
     {$group:{_id:"$marks.term",AvgScore:{$avg:"$marks.score"}}},
-    
-
-
 ])
