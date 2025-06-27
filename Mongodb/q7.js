@@ -110,7 +110,7 @@ db.marks.insertMany([
     },
     {
         name:"John",
-        term:"t1",
+        term:"t3",
         subject:"maths",
         score:88
     },
@@ -128,7 +128,7 @@ db.marks.insertMany([
     },
      {
         name:"John",
-        term:"t1",
+        term:"t3",
         subject:"science",
         score:82
     },
@@ -178,7 +178,34 @@ db.marks.aggregate([
 
 //Term wise Average
 db.marks.aggregate([
-    {$group:{_id:"$term",AvgScore:{$avg:"$score"}}}
+    {$group:{_id:"$term",AvgScore:{$avg:"$score"}}},
+    {$sort:{_id:1}}
 ])
 
+db.marks.aggregate([
+    {$group:{_id:"$subject",AvgScore:{$avg:"$score"}}},
+    {$sort:{_id:1}}
+])
+
+//Two Field Term and name wise
+
+db.marks.aggregate([
+    {$group:{
+        _id:{term:"$term",subject:"$subject"},
+    AvgScore:{$avg:"$score"},
+    
+}},
+{$sort:{_id:1}}
+])
+
+
+//display avg term wise of John
+db.marks.aggregate([
+    {$match:{"name":"John"}},
+    {$group:{
+        _id:{term:"$term",name:"$name"},
+        AvgScore:{$avg:"$score"},
+    }},
+    {$sort:{_id:1}}
+])
 
