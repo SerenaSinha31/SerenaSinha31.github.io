@@ -192,6 +192,7 @@ db.employess.aggregate([
     total:{$score}}}
 ])
 
+
 //Output---> India,Krish,63
 // UK,John,68
 
