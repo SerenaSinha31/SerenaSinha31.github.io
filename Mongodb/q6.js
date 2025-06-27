@@ -172,9 +172,15 @@ db.employess.aggregate([
             foreignField: "empId",
             as: "orders"
         },
+         $lookup: {
+            from:"empcountry",
+            localField: "_id",     
+            foreignField: "empId",
+            as: "empcountry"
+        },
     },
     {$unwind:"$orders"},
-    {$project:{name:1,salary:1,"orders.orderValue":1}},
+    {$project:{name:1,salary:1,"empcountry.country":1,"orders.orderValue":1}},
    
 ])
 
