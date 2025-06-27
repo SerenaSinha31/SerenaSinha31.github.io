@@ -209,3 +209,62 @@ db.marks.aggregate([
     {$sort:{_id:1}}
 ])
 
+//Create StudentInfo
+
+
+db.studentInfo.insertMany([
+    {
+        _id:"s1",
+        name:"John"
+    },
+    {
+        _id:"s2",        
+        name:"Cathy"
+    },
+])
+
+
+//Rename s1--> John,s2---> CAthy
+//name--->sid
+// name, term, subject,score
+
+
+
+// John, t1, maths, 98
+// John, t2, maths, 90
+// John, t3, maths, 88
+// John, t1, science, 92
+// John, t2, science, 82
+// John, t3, science, 82
+// Cathy, t1, maths, 92
+// Cathy, t2, maths, 92
+// Cathy, t3, maths, 82
+// Cathy, t1, science, 92
+// Cathy, t2, science,82
+// Cathy, t3, science, 80
+db.marks.updateMany(
+  {},
+  { $rename: { name: "sid" } }
+)
+
+db.marks.updateMany(
+  
+  { sid: "John" },{$set:{sid:"s1"}} 
+)
+
+db.marks.updateMany(
+  
+  { sid: "Cathy" },{$set:{sid:"s2"}} 
+)
+
+//Join---->look
+
+db.studentInfo.aggregate([
+     {$match:{"sid":"John"}},
+    {$lookup:{from:"marks",localField:"_id",foreignField:"sid",as:"marks"}},
+    {$unwind:"$marks"},
+    {$group:{_id:"$marks.term",AvgScore:{$avg:"$marks.score"}}},
+    
+
+
+])
