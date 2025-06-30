@@ -265,3 +265,48 @@ db.studentInfo.aggregate([
     {$unwind:"$marks"},
     {$group:{_id:"$marks.term",AvgScore:{$avg:"$marks.score"}}},
 ])
+//conditional statement
+db.employess.aggregate([
+    {$project:{
+        _id:0,
+        name:1,
+        salary:1,
+        Grade:{$cond:[{$gt:["$salary",3000]},"Grade A", "Grade B"]}}
+    }
+])
+
+//How to make new collection operator store the result in new collection
+db.employess.aggregate([
+    {$project:{
+        _id:0,
+        name:1,
+        salary:1,
+        Grade:{$cond:{
+            if:{$gt:["$salary",3000]},
+            then:"Grade A",
+            else:"Grade B"
+        }}}
+    },
+    {$out:"GradeWiseSalary"}
+])
+
+
+//Dynamically update karna hai then we take view
+// db.createView("viewname","collectionname",[query])
+//view is temporary virtual collection 
+db.createView("salaryview","employess",[
+    {$project:{
+        _id:0,
+        name:1,
+        department:1,
+        salary:1,
+        Grade:{$cond:{
+            if:{$gt:["$salary",3000]},
+            then:"Grade A",
+            else:"Grade B", 
+        }}}
+    },
+   
+])
+db.salaryview.drop()
+//backup and restore
