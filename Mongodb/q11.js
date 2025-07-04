@@ -43,3 +43,15 @@
 // sh.shardCollection("mydatabase.customers", { _id: 1 })
 // sh.status()
 // sh.getShardedDataDistribution() //run this after executing below nodejs scripts
+
+
+//password
+// C:\Users\seren>mongosh --username admin --authenticationDatabase admin
+// Enter password: *****
+
+
+db.createUser({
+  user: "user1",
+  pwd: "1234",
+  roles: [ { role: "read", db: "lpu" } ] 
+})
