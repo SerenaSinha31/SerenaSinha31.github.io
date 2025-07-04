@@ -1,10 +1,13 @@
 import express from "express";
 import jwt from "jsonwebtoken";
+
 const app = express();
 const SECRET = "sometext";
+
 app.listen(8080, () => {
   console.log("Server started");
 });
+
 const users = [
   {
     name: "John",
@@ -19,12 +22,15 @@ const users = [
     role: "admin",
   },
 ];
+
 app.use(express.json());
+
 app.post("/login", (req, res) => {
   const { email, password } = req.body;
   const found = users.find(
     (user) => user.email === email && user.password === password
   );
+
   if (found) {
     const token = jwt.sign(found, SECRET);
     res.status(200).json({ user: found, token });
