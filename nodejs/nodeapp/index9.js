@@ -38,3 +38,7 @@ app.post("/login", (req, res) => {
     res.status(400).json({ message: "Access Denied" });
   }
 });
+
+app.get("/users",(req,res)=>{
+    res.json(users);
+});
